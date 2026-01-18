@@ -1,17 +1,39 @@
 python-dotenv
-pandas 
+pandas
 numpy
 seaborn
 matplotlib
 scikit-learn
-pymongo
+scipy
+plotly
+
+pymongo==3.12.0
 certifi
-pymongo[srv]==3.12
 pyaml
 dill
-mlflow
-dagshub
-fastapi
-uvicorn
 
-#-e .
+# Core ML stack
+xgboost==3.1.3
+catboost==1.2.8
+imblearn
+evidently==0.2.8
+
+# API stack (Pydantic v1 ecosystem)
+fastapi==0.125.0
+uvicorn==0.29.0
+python-multipart
+
+# Tracking & MLOps
+mlflow==3.5.1
+dagshub==0.3.34
+
+# Utils
+from_root
+neuro_mf
+boto3
+botocore
+mypy-boto3-s3
+jinja2
+ipykernel
+
+-e .
