@@ -14,3 +14,8 @@ logging.basicConfig(
     level=logging.INFO,
 
 )
+
+
+# For custom logging refer to the python documentation given below:-
+
+#  "https://docs.python.org/3/library/logging.html"  #
