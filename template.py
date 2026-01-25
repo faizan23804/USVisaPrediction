@@ -35,11 +35,12 @@ list_of_files = [
     "requirements.txt",
     "Dockerfile",
     ".dockerignore",
-    "demo.py",
+    "main.py",
     "setup.py",
     "config/model.yaml",
     "config/schema.yaml",
     ".github/workflows/main.yaml",
+    "mongodb_conn.py",
     "README.md"
     
 
@@ -60,7 +61,7 @@ for filepath in list_of_files:
         print(f"File already exists at: {filepath}")
 
 
-filepath = "constant/constant_entity.py"
+filepath = "US_Visa_Pred/configurations/mongodb_conn.py"
 
 try:
     if os.path.exists(filepath) and os.path.isfile(filepath):
