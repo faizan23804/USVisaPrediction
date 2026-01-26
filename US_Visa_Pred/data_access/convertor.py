@@ -24,7 +24,7 @@ class USdata():
 
             df = pd.DataFrame(list(collection.find()))
             if '_id' in df.columns:
-                 df.drop('_id',axis=1)
+                df= df.drop('_id',axis=1)
             df.replace({'na':np.nan},inplace=True)
             return df
         except Exception as e:

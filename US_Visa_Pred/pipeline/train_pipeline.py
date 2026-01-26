@@ -1,8 +1,9 @@
 from US_Visa_Pred.components.data_ingestion import DataIngestion
+from US_Visa_Pred.components.data_validation import DataValidation
 from US_Visa_Pred.exceptions.exception import CustomException
 from US_Visa_Pred.logger.logging import logging
-from US_Visa_Pred.entity.config_entity import DataIngestionConfig
-from US_Visa_Pred.entity.artifact_entity import DataIngestionArtifact
+from US_Visa_Pred.entity.config_entity import *
+from US_Visa_Pred.entity.artifact_entity import *
 import sys
 
 
@@ -10,6 +11,7 @@ import sys
 class TrainPipeline:
     def __init__(self):
         self.data_ingestion_config = DataIngestionConfig()
+        self.data_validation_cofig = DataValidationConfig()
 
     def start_data_ingestion(self) -> DataIngestionArtifact:
         """
@@ -27,6 +29,19 @@ class TrainPipeline:
             return data_ingestion_artifact
         except Exception as e:
             raise CustomException(e, sys) from e
+        
+    def start_data_validation(self,data_ingestion_artifact: DataIngestionArtifact) -> DataValidationArtifact:
+
+        try:
+            logging.info("Entered the start_data_validation method of TrainPipeline class")
+            data_validation = DataValidation(data_ingestion_artifact=data_ingestion_artifact,
+                                              data_validation_config=self.data_validation_cofig)
+            
+            data_validation_artifact = data_validation.initiate_data_validation()
+            logging.info("Performed and Exited the Data Validation method")
+            return data_validation_artifact
+        except Exception as e:
+            raise CustomException(e,sys)
 
     
 
@@ -37,6 +52,7 @@ class TrainPipeline:
         """
         try:
             data_ingestion_artifact = self.start_data_ingestion()
+            data_validation_artifact = self.start_data_validation(data_ingestion_artifact=data_ingestion_artifact)
 
         
 
