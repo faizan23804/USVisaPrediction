@@ -1,0 +1,54 @@
+              ┌──────────────────────┐
+              │   Data Source         │
+              │   (MONGO_DB)          │
+              └──────────┬───────────┘
+                         │
+                         ▼
+              ┌──────────────────────┐
+              │   Data Ingestion      │
+              │ - Fetch raw data      │
+              │ - Split train/test    │
+              └──────────┬───────────┘
+                         │
+         DataIngestionArtifact
+                         │
+                         ▼
+              ┌──────────────────────┐
+              │   Data Validation     │
+              │                       │
+              │ ✔ Schema Validation   │
+              │ ✔ Column Check        │
+              │ ✔ Data Drift Check    │
+              │   (Evidently)          
+              └──────────┬───────────┘
+                         │
+         DataValidationArtifact
+                         │
+                         ▼
+              ┌──────────────────────┐
+              │ Data Transformation   │
+              │ - Encoding            │
+              │ - Scaling             │
+              │ - Fix class Imbalance
+              │   (SMOTEENN)
+              └──────────┬───────────┘
+                         │
+                         ▼
+              ┌──────────────────────┐
+              │   Model Training      │
+              │ - Train ML model      │
+              │ - Save artifacts      │
+              └──────────┬───────────┘
+                         │
+                         ▼
+              ┌──────────────────────┐
+              │   Model Evaluation    │
+              │ - Compare metrics     │
+              │ - Select best model   │
+              └──────────┬───────────┘
+                         │
+                         ▼
+              ┌──────────────────────┐
+              │   Model Deployment    │
+              │ - API / Batch / App   │
+              └──────────────────────┘

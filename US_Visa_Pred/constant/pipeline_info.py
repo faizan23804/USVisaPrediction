@@ -21,6 +21,8 @@ TRAIN_FILE_NAME:str = "train.csv"
 TEST_FILE_NAME:str = "test.csv"
 CURRENT_YEAR = date.today().year
 PREPROCESSING_OBJECT_FILE_NAME = "preprocessing.pkl"
+SCALED_TRAIN_FILE_NAME:str = "train.npy"
+SCALED_TEST_FILE_NAME:str = "test.npy"
 
 SCHEMA_FILE_PATH = os.path.join('config','schema.yaml')
 SAVED_MODEL_DIR = os.path.join("saved_models")
@@ -37,9 +39,16 @@ DATA_INGESTION_INGESTED_DIR:str = "ingested"
 DATA_INGESTION_TRAIN_TEST_SPLIT_RATIO:float = 0.2
 
 """
-Data Ingestion related constant start with Data_Ingestion VAR name.
+Data Validation related constant start with Data_VALIDATION VAR name.
 """
 DATA_VALIDATION_DIR_NAME:str = "data_validation"
 DATA_VALIDATION_DRIFT_REPORT_DIR:str = "drift_report"
 DATA_VALIDATION_DRIFT_REPORT_FILE_NAME:str = "report.yaml"
 DATA_VALIDATION_DRIFT_DASHBOARD_NAME:str = "drift_dashboard.html"
+
+"""
+Data Transformation related constant start with Data_TRANSFORMATION VAR name.
+"""
+DATA_TRANSFORMATION_DIR_NAME:str = "data_transformation"
+DATA_TRANSFORMATION_TRANSFORMED_DATA_DIR_NAME:str = "transformed"
+DATA_TRANSFORMATION_TRANSFORMED_OBJECT_DIR_NAME:str = "preprocessing_object"

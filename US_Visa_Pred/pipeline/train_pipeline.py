@@ -1,5 +1,6 @@
 from US_Visa_Pred.components.data_ingestion import DataIngestion
 from US_Visa_Pred.components.data_validation import DataValidation
+from US_Visa_Pred.components.data_transformation import DataTransformation
 from US_Visa_Pred.exceptions.exception import CustomException
 from US_Visa_Pred.logger.logging import logging
 from US_Visa_Pred.entity.config_entity import *
@@ -12,6 +13,7 @@ class TrainPipeline:
     def __init__(self):
         self.data_ingestion_config = DataIngestionConfig()
         self.data_validation_cofig = DataValidationConfig()
+        self.data_transformation_config = DataTransformationConfig()
 
     def start_data_ingestion(self) -> DataIngestionArtifact:
         """
@@ -42,6 +44,19 @@ class TrainPipeline:
             return data_validation_artifact
         except Exception as e:
             raise CustomException(e,sys)
+        
+    def start_data_transformation(self, data_ingestion_artifact: DataIngestionArtifact, data_validation_artifact: DataValidationArtifact) -> DataTransformationArtifact:
+        """
+        This method of TrainPipeline class is responsible for starting data transformation component
+        """
+        try:
+            data_transformation = DataTransformation(data_ingestion_artifact=data_ingestion_artifact,
+                                                     data_transformation_config=self.data_transformation_config,
+                                                     data_validation_artifact=data_validation_artifact)
+            data_transformation_artifact = data_transformation.initiate_data_transformer()
+            return data_transformation_artifact
+        except Exception as e:
+            raise CustomException(e, sys)
 
     
 
@@ -53,6 +68,8 @@ class TrainPipeline:
         try:
             data_ingestion_artifact = self.start_data_ingestion()
             data_validation_artifact = self.start_data_validation(data_ingestion_artifact=data_ingestion_artifact)
+            data_transformation_artifact = self.start_data_transformation(
+                data_ingestion_artifact=data_ingestion_artifact, data_validation_artifact=data_validation_artifact)
 
         
 

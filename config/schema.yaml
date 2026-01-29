@@ -28,3 +28,29 @@ categorical_columns:
   - full_time_position
   - case_status
 
+
+
+drop_columns:
+  - case_id
+  - yr_of_estab
+
+# for data transformation
+num_features:
+  - no_of_employees
+  - prevailing_wage
+  - company_age
+
+or_columns:
+  - education_of_employee
+  - requires_job_training
+  - full_time_position
+  - has_job_experience
+
+ohe_columns:
+  - continent
+  - unit_of_wage
+  - region_of_employment
+
+transform_columns:
+  - no_of_employees
+  - company_age
