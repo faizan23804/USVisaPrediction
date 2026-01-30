@@ -20,7 +20,7 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder, OrdinalEncoder,
 class DataTransformation:
     def __init__(self,data_ingestion_artifact: DataIngestionArtifact,
                  data_transformation_config: DataTransformationConfig,
-                 data_validation_artifact: DataValidationArtifact,):
+                 data_validation_artifact: DataValidationArtifact):
                  
         try:
             self.data_ingestion_artifact = data_ingestion_artifact
@@ -38,7 +38,7 @@ class DataTransformation:
             raise CustomException(e,sys)
         
     
-    def object_transformer(self,):
+    def object_transformer(self):
         try:
             logging.info("Got the Columns from the schema config")
 
@@ -184,12 +184,7 @@ class DataTransformation:
                 return data_transformation_artifact
             else:
                 raise Exception(self.data_validation_artifact.message)
-
-
-
-
-
-            
+           
         except Exception as e:
             raise CustomException(e,sys)
 
