@@ -1,6 +1,7 @@
 from US_Visa_Pred.components.data_ingestion import DataIngestion
 from US_Visa_Pred.components.data_validation import DataValidation
 from US_Visa_Pred.components.data_transformation import DataTransformation
+from US_Visa_Pred.components.model_trainer import ModelTrainer
 from US_Visa_Pred.exceptions.exception import CustomException
 from US_Visa_Pred.logger.logging import logging
 from US_Visa_Pred.entity.config_entity import *
@@ -12,8 +13,9 @@ import sys
 class TrainPipeline:
     def __init__(self):
         self.data_ingestion_config = DataIngestionConfig()
-        self.data_validation_cofig = DataValidationConfig()
+        self.data_validation_config = DataValidationConfig()
         self.data_transformation_config = DataTransformationConfig()
+        self.model_trainer_config = ModelTrainerConfig()
 
     def start_data_ingestion(self) -> DataIngestionArtifact:
         """
@@ -37,7 +39,7 @@ class TrainPipeline:
         try:
             logging.info("Entered the start_data_validation method of TrainPipeline class")
             data_validation = DataValidation(data_ingestion_artifact=data_ingestion_artifact,
-                                              data_validation_config=self.data_validation_cofig)
+                                              data_validation_config=self.data_validation_config)
             
             data_validation_artifact = data_validation.initiate_data_validation()
             logging.info("Performed and Exited the Data Validation method")
@@ -57,6 +59,14 @@ class TrainPipeline:
             return data_transformation_artifact
         except Exception as e:
             raise CustomException(e, sys)
+        
+    def start_model_trainer(self, data_transformation_artifact: DataTransformationArtifact):
+        try:
+            model_trainer = ModelTrainer(data_transformation_artifact=data_transformation_artifact, model_trainer_config=self.model_trainer_config)
+            model_trainer_artifact = model_trainer.initiate_model_trainer()
+            return model_trainer_artifact
+        except Exception as e:
+            raise CustomException(e,sys)
 
     
 
@@ -70,6 +80,7 @@ class TrainPipeline:
             data_validation_artifact = self.start_data_validation(data_ingestion_artifact=data_ingestion_artifact)
             data_transformation_artifact = self.start_data_transformation(
                 data_ingestion_artifact=data_ingestion_artifact, data_validation_artifact=data_validation_artifact)
+            model_trainer_artifact = self.start_model_trainer(data_transformation_artifact=data_transformation_artifact)
 
         
 

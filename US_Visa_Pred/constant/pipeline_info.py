@@ -52,3 +52,13 @@ Data Transformation related constant start with Data_TRANSFORMATION VAR name.
 DATA_TRANSFORMATION_DIR_NAME:str = "data_transformation"
 DATA_TRANSFORMATION_TRANSFORMED_DATA_DIR_NAME:str = "transformed"
 DATA_TRANSFORMATION_TRANSFORMED_OBJECT_DIR_NAME:str = "preprocessing_object"
+
+
+"""
+Model Trainer related constant start with Model_Trainer VAR name.
+"""
+MODEL_TRAINER_DIR_NAME:str = "model_trainer"
+MODEL_TRAINER_TRAINED_MODEL_DIR:str = "trained_model"
+MODEL_TRAINER_TRAINED_MODEL_NAME:str = "model.pkl"
+TRAINED_MODEL_EXPECTED_SCORE:float = 0.6
+MODEL_TRAINER_MODEL_CONFIG_FILE_PATH = os.path.join("config","model.yaml")

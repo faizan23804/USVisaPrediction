@@ -61,6 +61,14 @@ class DataTransformationConfig:
           data_transformation_dir,
           DATA_TRANSFORMATION_TRANSFORMED_OBJECT_DIR_NAME,
           PREPROCESSING_OBJECT_FILE_NAME)
+     
+
+@dataclass
+class ModelTrainerConfig:
+     model_trainer_dir: str = os.path.join(training_pipeline_config.artifact_dir, MODEL_TRAINER_DIR_NAME)
+     trained_model_dir: str = os.path.join(model_trainer_dir,MODEL_TRAINER_TRAINED_MODEL_DIR,MODEL_FILE_NAME)
+     model_expected_score: float = TRAINED_MODEL_EXPECTED_SCORE
+     model_trainer_config_file = MODEL_TRAINER_MODEL_CONFIG_FILE_PATH
     
      
 
