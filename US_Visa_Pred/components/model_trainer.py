@@ -26,7 +26,7 @@ class ModelTrainer:
             raise CustomException(e,sys)
 
 
-    def get_model_obj_and_report(self,train: np.array,test: np.array):
+    def get_model_obj_and_report(self,train: np.array,test: np.array): # type: ignore
 
         try:
             logging.info("Using neuro_mf to get best model object and report")
@@ -43,8 +43,9 @@ class ModelTrainer:
             accuracy_sc = accuracy_score(y_test,y_pred)
             precision_sc = precision_score(y_test,y_pred)
             recall_sc = recall_score(y_test,y_pred)
+            f1_sc = f1_score(y_test,y_pred)
 
-            metric_artifact = ClassificatiomMetricArtifact(accuracy_score=accuracy_sc, precision_score=precision_sc, recall_score=recall_sc)
+            metric_artifact = ClassificatiomMetricArtifact(accuracy_score=accuracy_sc, precision_score=precision_sc, recall_score=recall_sc, f1_score=f1_sc) # type: ignore
 
             return best_model_object, metric_artifact
         

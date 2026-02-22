@@ -28,6 +28,10 @@ SCHEMA_FILE_PATH = os.path.join('config','schema.yaml')
 SAVED_MODEL_DIR = os.path.join("saved_models")
 MODEL_FILE_NAME = "model.pkl"
 
+AWS_ACCESS_KEY_ID_ENV_KEY = "AWS_ACCESS_KEY_ID"
+AWS_SECRET_ACCESS_KEY_ENV_KEY = "AWS_SECRET_ACCESS_KEY"
+REGION_NAME = "us-east-1"
+
 
 """
 Data Ingestion related constant start with Data_Ingestion VAR name.
@@ -62,3 +66,11 @@ MODEL_TRAINER_TRAINED_MODEL_DIR:str = "trained_model"
 MODEL_TRAINER_TRAINED_MODEL_NAME:str = "model.pkl"
 TRAINED_MODEL_EXPECTED_SCORE:float = 0.6
 MODEL_TRAINER_MODEL_CONFIG_FILE_PATH = os.path.join("config","model.yaml")
+
+
+"""
+Model Evaluation related constant start with Model_Evaluation VAR name.
+"""
+MODEL_EVALUATION_CHANGED_THRESHOLD_SCORE:float = 0.2
+MODEL_BUCKET_NAME = "usvisa-model2026-feb"
+MODEL_PUSHER_S3_KEY = "model-registry"
