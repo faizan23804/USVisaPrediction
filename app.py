@@ -46,16 +46,16 @@ class DataForm:
 
     async def get_usvisa_data(self):
         form = await self.request.form()
-        self.continent = form.get("continent")
-        self.education_of_employee = form.get("education_of_employee")
-        self.has_job_experience = form.get("has_job_experience")
-        self.requires_job_training = form.get("requires_job_training")
-        self.no_of_employees = form.get("no_of_employees")
-        self.company_age = form.get("company_age")
-        self.region_of_employment = form.get("region_of_employment")
-        self.prevailing_wage = form.get("prevailing_wage")
-        self.unit_of_wage = form.get("unit_of_wage")
-        self.full_time_position = form.get("full_time_position")
+        self.continent = form.get("continent") # type: ignore
+        self.education_of_employee = form.get("education_of_employee") # type: ignore
+        self.has_job_experience = form.get("has_job_experience") # type: ignore
+        self.requires_job_training = form.get("requires_job_training") # type: ignore
+        self.no_of_employees = form.get("no_of_employees") # type: ignore
+        self.company_age = form.get("company_age") # type: ignore
+        self.region_of_employment = form.get("region_of_employment") # type: ignore
+        self.prevailing_wage = form.get("prevailing_wage") # type: ignore
+        self.unit_of_wage = form.get("unit_of_wage") # type: ignore
+        self.full_time_position = form.get("full_time_position") # type: ignore
 
 @app.get("/", tags=["authentication"])
 async def index(request: Request):
