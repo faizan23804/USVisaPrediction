@@ -18,7 +18,7 @@ class USvisaEstimator:
         self.bucket_name = bucket_name
         self.s3 = SimpleStorageService()
         self.model_path = model_path
-        self.loaded_model:USVisaModel
+        self.loaded_model:USVisaModel | None = None
 
 
     def is_model_present(self,model_path):
