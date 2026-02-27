@@ -36,4 +36,4 @@ mypy-boto3-s3
 jinja2
 ipykernel
 
--e .
+#-e .
