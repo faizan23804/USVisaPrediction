@@ -151,7 +151,7 @@ conda create -n venv python=3.10 -y
 ```
 
 ```bash
-conda activate venv/
+conda activate venv
 ```
 
 ```bash
@@ -254,6 +254,7 @@ export AWS_SECRET_ACCESS_KEY=<AWS_SECRET_ACCESS_KEY>
 
 #  Accessing the Application
  - [http://<EC2_PUBLIC_IPV4>:8000].
+
 
 
 
