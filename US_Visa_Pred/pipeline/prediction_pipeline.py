@@ -77,7 +77,7 @@ class USvisaData:
                 "company_age": [self.company_age],
             }
 
-            logging.info("Created usvisa data dict")
+            logging.info("Created usvisa data dictionary")
 
             logging.info("Exited get_usvisa_data_as_dict method as USvisaData class")
 
