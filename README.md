@@ -117,32 +117,36 @@ Visa Approved / Not Approved
 
 
 🖥️ Tech Stack
-Layer	                Technology
-Language	            Python 3.8
-Backend        	      FastAPI
-ML	                  Scikit-learn, XGBoost, CatBoost
-Data	                MongoDB Atlas
-Storage	              AWS S3
-Containerization	    Docker
-CI/CD	                GitHub Actions
-Deployment	          AWS EC2
-Image Registry	      Amazon ECR
+| Layer            | Technology                      |
+| ---------------- | ------------------------------- |
+| Language         | Python 3.8                      |
+| Backend          | FastAPI                         |
+| ML               | Scikit-learn, XGBoost, CatBoost |
+| Database         | MongoDB Atlas                   |
+| Model Storage    | AWS S3                          |
+| Containerization | Docker                          |
+| CI/CD            | GitHub Actions                  |
+| Image Registry   | Amazon ECR                      |
+| Deployment       | AWS EC2                         |
+
 
 
 Project Structure
 US_Visa_Pred/
 │
-├── constant/          # Constants & environment keys
-├── entity/            # Config & artifact entities
-├── components/        # ML pipeline components
-├── pipeline/          # Training & prediction pipelines
-├── cloud_storage/     # AWS S3 logic
-├── templates/         # HTML templates
-├── static/            # CSS/JS files
-├── app.py             # FastAPI app
+├── constant/              # Constants & environment keys
+├── entity/                # Config & artifact entities
+├── components/            # ML pipeline components
+├── pipeline/              # Training & prediction pipelines
+├── cloud_storage/         # AWS S3 interaction logic
+├── templates/             # HTML templates (UI)
+├── static/                # CSS / JS files
+│
+├── app.py                 # FastAPI application
 ├── Dockerfile
 ├── requirements.txt
-└── .github/workflows/ # CI/CD YAML
+│
+└── .github/workflows/     # CI/CD GitHub Actions YAML
 
 
 🧪 How to Run Locally
@@ -154,22 +158,21 @@ conda activate visa
 pip install -r requirements.txt
 
 3️⃣ Set Environment Variables
-export MONGODB_URL="mongodb+srv://<username>:<password>..."
-
+export MONGODB_URL="mongodb+srv://<username>:<password>@cluster..."
 export AWS_ACCESS_KEY_ID=<AWS_ACCESS_KEY_ID>
 export AWS_SECRET_ACCESS_KEY=<AWS_SECRET_ACCESS_KEY>
 export AWS_REGION=us-east-1
+
 
 4️⃣ Run Application
 python app.py
 
 🔄 Git Commands
 git add .
-git commit -m "Updated"
+git commit -m "Updated US Visa Prediction Project"
 git push origin main
 
 🚢 AWS CI/CD Deployment (GitHub Actions)
-Deployment Flow
 Git Push
    │
    ▼
@@ -188,11 +191,10 @@ EC2 (Self-Hosted Runner)
 Docker Pull from ECR
    │
    ▼
-Run Container (FastAPI App)
-
+Run FastAPI Container
 
 🔐 AWS Setup Summary
-IAM Permissions
+IAM Permissions Required
 
 AmazonEC2FullAccess
 
@@ -201,15 +203,12 @@ AmazonEC2ContainerRegistryFullAccess
 GitHub Secrets
 
 AWS_ACCESS_KEY_ID
-
 AWS_SECRET_ACCESS_KEY
-
 AWS_REGION
-
 AWS_ECR_LOGIN_URI
-
 ECR_REPOSITORY_NAME
 
 
 🌍 Accessing the Application
-http://<EC2_PUBLIC_IPV4>:8000
+[http://<EC2_PUBLIC_IPV4>:8000](http://<EC2_PUBLIC_IPV4>:8000)
+
