@@ -83,20 +83,6 @@ Model Pusher (Upload to S3)
                  └───────────────────┘
 
 
-☁️ Model Storage & Retrieval (AWS S3)
-
-The best performing model is serialized using pickle
-
-Uploaded to AWS S3
-
-During prediction:
-
-Model is fetched from S3
-
-Loaded into memory
-
-Used for inference
-
 
 User Form Input (Web UI)
         │
@@ -147,68 +133,126 @@ Project Structure
 | CI/CD            | `.github/workflows/` | GitHub Actions automation                                           |
 
 
+## Git commands
 
-🧪 How to Run Locally
-1️⃣ Create Conda Environment
-conda create -n visa python=3.8 -y
-conda activate visa
-
-2️⃣ Install Dependencies
-pip install -r requirements.txt
-
-3️⃣ Set Environment Variables
-export MONGODB_URL="mongodb+srv://<username>:<password>@cluster..."
-export AWS_ACCESS_KEY_ID=<AWS_ACCESS_KEY_ID>
-export AWS_SECRET_ACCESS_KEY=<AWS_SECRET_ACCESS_KEY>
-export AWS_REGION=us-east-1
-
-
-4️⃣ Run Application
-python app.py
-
-🔄 Git Commands
+```bash
 git add .
-git commit -m "Updated US Visa Prediction Project"
+
+git commit -m "Updated"
+
 git push origin main
-
-🚢 AWS CI/CD Deployment (GitHub Actions)
-Git Push
-   │
-   ▼
-GitHub Actions (CI)
-   │
-   ▼
-Docker Image Build
-   │
-   ▼
-Push Image → Amazon ECR
-   │
-   ▼
-EC2 (Self-Hosted Runner)
-   │
-   ▼
-Docker Pull from ECR
-   │
-   ▼
-Run FastAPI Container
-
-🔐 AWS Setup Summary
-IAM Permissions Required
-
-AmazonEC2FullAccess
-
-AmazonEC2ContainerRegistryFullAccess
-
-GitHub Secrets
-
-AWS_ACCESS_KEY_ID
-AWS_SECRET_ACCESS_KEY
-AWS_REGION
-AWS_ECR_LOGIN_URI
-ECR_REPOSITORY_NAME
+```
 
 
-🌍 Accessing the Application
-[http://<EC2_PUBLIC_IPV4>:8000](http://<EC2_PUBLIC_IPV4>:8000)
+## How to run?
+
+```bash
+conda create -n visa python=3.8 -y
+```
+
+```bash
+conda activate visa
+```
+
+```bash
+pip install -r requirements.txt
+```
+
+## Workflow:
+
+1. constants
+2. entity
+3. components
+4. pipeline
+5. Main file
+
+
+
+### Export the  environment variable
+```bash
+
+
+export MONGODB_URL="mongodb+srv://<username>:<password>...."
+
+export AWS_ACCESS_KEY_ID=<AWS_ACCESS_KEY_ID>
+
+export AWS_SECRET_ACCESS_KEY=<AWS_SECRET_ACCESS_KEY>
+
+
+```
+
+
+# AWS-CICD-Deployment-with-Github-Actions
+
+## 1. Login to AWS console.
+
+## 2. Create IAM user for deployment
+
+	#with specific access
+
+	1. EC2 access : It is virtual machine
+
+	2. ECR: Elastic Container registry to save your docker image in aws
+
+
+	#Description: About the deployment
+
+	1. Build docker image of the source code
+
+	2. Push your docker image to ECR
+
+	3. Launch Your EC2 
+
+	4. Pull Your image from ECR in EC2
+
+	5. Lauch your docker image in EC2
+
+	#Policy:
+
+	1. AmazonEC2ContainerRegistryFullAccess
+
+	2. AmazonEC2FullAccess
+
+	
+## 3. Create ECR repo to store/save docker image
+    - Save the URI: 9846********.dkr.ecr.us-east-1.amazonaws.com/us-visa
+
+	
+## 4. Create EC2 machine (Ubuntu) 
+
+## 5. Open EC2 and Install docker in EC2 Machine:
+	
+	
+	#optinal
+
+	sudo apt-get update -y
+
+	sudo apt-get upgrade
+	
+	#required
+
+	curl -fsSL https://get.docker.com -o get-docker.sh
+
+	sudo sh get-docker.sh
+
+	sudo usermod -aG docker ubuntu
+
+	newgrp docker
+	
+# 6. Configure EC2 as self-hosted runner:
+    setting>actions>runner>new self hosted runner> choose os> then run command one by one
+
+
+# 7. Setup github secrets:
+
+   - AWS_ACCESS_KEY_ID
+   - AWS_SECRET_ACCESS_KEY
+   - AWS_REGION
+   - AWS_ECR_LOGIN_URI
+   - ECR_REPOSITORY_NAME
+
+
+#  Accessing the Application
+ - [http://<EC2_PUBLIC_IPV4>:8000].
 
 
