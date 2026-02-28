@@ -132,21 +132,20 @@ Visa Approved / Not Approved
 
 
 Project Structure
-US_Visa_Pred/
-│
-├── constant/              # Constants & environment keys
-├── entity/                # Config & artifact entities
-├── components/            # ML pipeline components
-├── pipeline/              # Training & prediction pipelines
-├── cloud_storage/         # AWS S3 interaction logic
-├── templates/             # HTML templates (UI)
-├── static/                # CSS / JS files
-│
-├── app.py                 # FastAPI application
-├── Dockerfile
-├── requirements.txt
-│
-└── .github/workflows/     # CI/CD GitHub Actions YAML
+| Layer            | Directory / File     | Responsibility                                                      |
+| ---------------- | -------------------- | ------------------------------------------------------------------- |
+| Configuration    | `constant/`          | Environment keys, global constants, pipeline configs                |
+| Data Contracts   | `entity/`            | Config entities, artifact schemas, dataclasses                      |
+| Data Pipeline    | `components/`        | Ingestion, validation, transformation, training, evaluation, pusher |
+| Orchestration    | `pipeline/`          | Training & prediction pipeline execution                            |
+| Cloud Storage    | `cloud_storage/`     | AWS S3 upload/download logic                                        |
+| Web Templates    | `templates/`         | HTML files for Web UI                                               |
+| Static Assets    | `static/`            | CSS, JavaScript, images                                             |
+| API Layer        | `app.py`             | FastAPI application & endpoints                                     |
+| Containerization | `Dockerfile`         | Docker image definition                                             |
+| Dependencies     | `requirements.txt`   | Python package dependencies                                         |
+| CI/CD            | `.github/workflows/` | GitHub Actions automation                                           |
+
 
 
 🧪 How to Run Locally
@@ -211,4 +210,5 @@ ECR_REPOSITORY_NAME
 
 🌍 Accessing the Application
 [http://<EC2_PUBLIC_IPV4>:8000](http://<EC2_PUBLIC_IPV4>:8000)
+
 
